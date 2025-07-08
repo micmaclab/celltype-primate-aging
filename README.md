@@ -1,12 +1,12 @@
 # Cellular basis for cortical network aging in primates
 
-This repository hosts data, code, and links to external resources used for this work.
+This repository hosts data, code, and links to external resources used to generate the results of this work.
 
-## Publication DOI
+## Publication Link
 
-[Preprint Link](https://)
+[Preprint Link](https://doi.org/)
 
-## Alignment of Data & Analysis Across Scales 
+## Alignment of Data & Analyses Across Scales 
 
 <p align="center">
   <img src="figs/overview.png" width="850">
@@ -36,7 +36,7 @@ Macaque to human comparison of cell type composition
 
 
 
-## External Repositories
+## External Code Repositories
 
 - **MIND network construction**  
   - Code: https://github.com/isebenius/MIND  
