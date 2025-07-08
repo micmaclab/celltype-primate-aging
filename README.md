@@ -36,41 +36,61 @@ Macaque to human comparison of cell type composition
 
 
 
-## External Resources & Repositories
+## External Repositories
 
-MIND network construction
-    Code: https://github.com/isebenius/MIND
-    Reference:
+- **MIND network construction**  
+  - Code: https://github.com/isebenius/MIND  
+  - Reference: Sebenius, I. et al., *Nature Neuroscience* 26, 1461–1471 (2023).
 
-Functional network cross-species alignment analyses 
-    Code: https://github.com/TingsterX/alignment_macaque-human 
-    Reference:
-    
-3D single-cell transcriptomic atlas of macaque monkey
-    [Online Website](https://macaque.digital-brain.cn/spatial-omics)
-    Reference: Chen 
+- **Functional network cross-species alignment analyses**  
+  - Code: https://github.com/TingsterX/alignment_macaque-human  
+  - Reference: Xu, T. et al., *NeuroImage* 223, 117346 (2020).
 
-Canonical correlation analysis (CCA)
-    Code: https://github.com/andersonwinkler/PermCCA
-    Reference:
+- **3D single-cell transcriptomic atlas of macaque monkey**  
+  - [Online Visualization Tool & Data](https://macaque.digital-brain.cn/spatial-omics)  
+  - Reference: Chen, A. et al., *Cell* 186, 3743.e24 (2023).
 
-Imputed human cell type distributions
-    Code:
-    Reference
+- **Canonical correlation analysis (CCA)**  
+  - Code: https://github.com/andersonwinkler/PermCCA  
+  - Reference: Winkler, A. M., et al., *NeuroImage* 220, 117065 (2020).
 
-Surface Based Visualizations
-    Code: https://github.com/danjgale/surfplot
-    Reference:
+- **Imputed human cell type distributions**  
+  - Code: https://github.com/XihanZhang/human-cellular-func-con/tree/main
+  - Reference: Zhang et al., *Nature Neuroscience* 28, 150–160 (2025).
 
+- **Surface Based Visualizations**  
+  - Code: https://github.com/danjgale/surfplot  
 
-Neuro Maps?
+## External Tools & Software Libraries
 
+- **CIVET-macaque**  
+  - Usage: Cortical surface extraction  
+  - Reference: Lepage, C. et al., *NeuroImage* 227, 117622 (2021).
 
-## Other Tools
+- **Connectome Workbench**  
+  - Usage: Surface-based rendering and visualization  
+  - Reference: Marcus, D. et al., *Frontiers in Neuroinformatics* 5, (2011).
 
-Spatial permutation tests utilized the netneurotools, nibabel, and neuromaps Python libraries. Linear mixed effects models were implemented using the lme package in R. Surfaces were rendered using Connectome Workbench. 
+- **netneurotools**  
+  - Usage: Spatial permutation tests  
+  - Language: Python  
+  - Code: https://netneurolab.github.io/netneurotools/
 
+- **nibabel**  
+  - Usage: Neuroimaging data handling (NIfTI, GIFTI, etc.)  
+  - Language: Python  
+  - Code: https://nipy.org/nibabel/
 
+- **neuromaps**  
+  - Usage: Coordinate system registration and map comparison  
+  - Language: Python  
+  - Code: https://netneurolab.github.io/neuromaps/
+
+- **lme4 (R package)**  
+  - Usage: Linear mixed-effects modeling  
+  - Language: R  
+  - Code: https://cran.r-project.org/web/packages/lme4/index.html  
+  - Reference: Bates et al., *Journal of Statistical Software* 67(1), 2015.
 
 
 
