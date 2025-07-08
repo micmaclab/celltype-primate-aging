@@ -13,30 +13,51 @@ This repository hosts data, code, and links to external resources used to genera
 </p>
 
 
+## Project Code
 
-## Data & Code   
+- **Cross-species alignment of functional domains**  
+  Usage: Map human functional networks onto macaque cortex using joint embedding  
+  Code: [folder name]
 
-Cross-species alignment of functional domains 
+- **Cortical similarity networks using Morphometric Inverse Divergence (MIND)**  
+  Usage: Compute region-wise similarity based on multivariate MRI features  
+  Code: [folder name]
 
-Cortical similarity networks using Morphometric Inverse Divergence (MIND) 
+- **Computation of network-based properties**  
+  Usage: Derive total similarity strength across cortical regions and networks  
+  Code: [folder name]
 
-Computation of network-based properties 
+- **Statistical modeling of age effects**  
+  Usage: Model age-related change in regional similarity strength using `lme4`  
+  Code: [folder name]
 
-Statistical modeling of age effects
+- **3D single-cell transcriptomic atlas of macaque monkey**  
+  Usage: Analyze region- and layer-specific cell type distributions  
+  Code: [folder name]
 
-Univariate associations with cell type specific abundances
+- **Univariate associations with cell type specific abundances**  
+  Usage: Correlate regional MRI features with cell-type abundance using null models  
+  Code: [folder name]
 
-Canonical Correlation Analysis
+- **Canonical Correlation Analysis**  
+  Usage: Identify multivariate relationships between cell profiles and MRI-based MIND.   
+  Code: [folder name]
 
-Human specific cortical cell type enrichment dataset  
+- **Human specific cortical cell type enrichment dataset**  
+  Usage: Integrate imputed human cell type distributions from Zhang et al (see *External Repositories*) 
+  Code: [folder name]
 
-Comparison of macaque and human cell types by their aligned functional networks
+- **Comparison of macaque and human cell types by their aligned functional networks**  
+  Usage: Test for cell type enrichment within functional networks in both species  
+  Code: [folder name]
 
-Macaque to human comparison of cell type composition 
+- **Macaque to human comparison of cell type composition**  
+  Usage: Compare cross-species cell type composition using PCA and Mantel test  
+  Code: [folder name]
 
 
 
-## External Code Repositories
+## External Repositories
 
 - **MIND network construction**  
   - Code: https://github.com/isebenius/MIND  
