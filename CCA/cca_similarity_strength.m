@@ -1,3 +1,4 @@
+% Code inspired by https://github.com/XihanZhang/human-cellular-func-con/blob/main/scripts/08a_PermCCA_GradientVarbyAllCell.m
 clear variables
 close all
 
@@ -25,15 +26,43 @@ addpath('/Users/melinatsotras/Downloads/PermCCA-master');
 %  Load Shared Data
 % ---------------------------
 
-% 1. Gradient 1
-metric = csvread(fullfile(data_dir, 'total_similarity_strength_vector.csv'));
+% 1. Total Similarity Strength
+similarity_strength_table = readtable(fullfile(base_dir,'MIND_Network', 'total_similarity_strength.csv'), 'ReadRowNames', true);
+
+% Get the row names (cell array of char)
+row_names = similarity_strength_table.Properties.RowNames;
+
+% Convert them to numeric
+row_nums = str2double(row_names);
+
+% Sort numeric row names and get sorting indices
+[sorted_nums, sort_idx] = sort(row_nums);
+
+% Reorder the table rows according to sort order
+similarity_strength_table = similarity_strength_table(sort_idx, :);
+
+% Update row names to sorted (optional but cleaner)
+similarity_strength_table.Properties.RowNames = string(sorted_nums);
+
+
+% Extract the 't_value' column as a numeric vector
+metric = similarity_strength_table.total_similarity_strength;
 
 % 2. Permuted Metrics
 nulls = readmatrix(fullfile(data_dir, 'hungarian_5k_nulls_similarity_strength.csv'));
 disp(size(nulls));  % Confirm dimensions
 
 % 3. Cell type abundance
-Cell_data      = readtable(fullfile(data_dir, 'matlab_cell_data.csv'), 'ReadRowNames', true);
+Cell_data      = readtable(fullfile(base_dir, 'data', 'd99_cell_abundance.csv'), 'ReadRowNames', true);
+row_names = str2double(Cell_data.Properties.RowNames);
+
+% Find the index of the row where the name is 70
+row_to_remove = row_names == 70;
+
+% Remove that row
+Cell_data(row_to_remove, :) = [];
+
+Cell_data{:, :} = Cell_data{:, :} / 100000;
 Celldata_mat   = table2array(Cell_data);
 cell_type_list = Cell_data.Properties.VariableNames;
 cell_num       = size(Celldata_mat, 2);

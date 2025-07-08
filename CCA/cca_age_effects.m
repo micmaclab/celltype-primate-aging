@@ -1,4 +1,4 @@
-
+% Code inspired by https://github.com/XihanZhang/human-cellular-func-con/blob/main/scripts/08a_PermCCA_GradientVarbyAllCell.m
 clear variables
 close all
 
@@ -11,7 +11,7 @@ script_dir = fileparts(this_file);
 base_dir   = fileparts(script_dir);  % Assumes script is in submission/CCA/
 
 % Define subdirectories
-data_dir         = fullfile(base_dir, 'CCA', 'input');
+data_dir         = fullfile(base_dir, 'data');
 output_main_dir  = fullfile(base_dir, 'CCA', 'output');
 output_sens_dir  = fullfile(base_dir, 'CCA', 'sensitivity_analysis');
 
@@ -26,15 +26,30 @@ addpath('/Users/melinatsotras/Downloads/PermCCA-master');
 %  Load Shared Data
 % ---------------------------
 
-% 1. Gradient 1
-metric = csvread(fullfile(data_dir, 'age_effects_vector.csv'));
+% 1. Age Effects Vector 
+age_effects_table = readtable(fullfile(base_dir,'Mixed_Effects_Models', 'regionwise_age_effects_MixedLM.csv'));
+
+% Sort the table rows by 'region' in ascending order
+age_effects_table = sortrows(age_effects_table, 'region');
+
+% Extract the 't_value' column as a numeric vector
+metric = age_effects_table.t_value;
 
 % 2. Permuted Metrics
-nulls = readmatrix(fullfile(data_dir, 'hungarian_5k_nulls_age_effects.csv'));
+nulls = readmatrix(fullfile(base_dir,'CCA','input', 'hungarian_5k_nulls_age_effects.csv'));
 disp(size(nulls));  % Confirm dimensions
 
 % 3. Cell type abundance
-Cell_data      = readtable(fullfile(data_dir, 'matlab_cell_data.csv'), 'ReadRowNames', true);
+Cell_data      = readtable(fullfile(data_dir, 'd99_cell_abundance.csv'), 'ReadRowNames', true);
+row_names = str2double(Cell_data.Properties.RowNames);
+
+% Find the index of the row where the name is 70
+row_to_remove = row_names == 70;
+
+% Remove that row
+Cell_data(row_to_remove, :) = [];
+
+Cell_data{:, :} = Cell_data{:, :} / 100000;
 Celldata_mat   = table2array(Cell_data);
 cell_type_list = Cell_data.Properties.VariableNames;
 cell_num       = size(Celldata_mat, 2);
