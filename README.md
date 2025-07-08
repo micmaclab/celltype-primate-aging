@@ -1,12 +1,18 @@
 # Cellular basis for cortical network aging in primates
 
+This repository hosts data and code for the analysis of primate brain architecture across scales. 
+
 ## Publication DOI
 
-Preprint Link
+[Preprint Link](https://)
 
-## Overview of Analyses and Code 
+## Overview of Workflow
 
-This repository hosts data, code, and analyses for the following workflow. 
+<p align="center">
+  <img src="figs/overview.png" width="1000">
+</p>
+
+
 
 
 
