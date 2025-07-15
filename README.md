@@ -4,7 +4,7 @@ This repository hosts data, code, and links to external resources used to genera
 
 ## Publication Link
 
-[Incoming Preprint Link]([https://doi.org/](https://www.biorxiv.org/content/10.1101/2025.07.08.663725v1.full))
+[Incoming Preprint Link](https://www.biorxiv.org/content/10.1101/2025.07.08.663725v1.full)
 
 ## Alignment & Analyses 
 
