@@ -15,7 +15,7 @@ This repository hosts data, code, and links to external resources used to genera
 
 ### Python
 
-This project has been tested on Python versions **3.9, 3.10, 3.11, and 3.12**.
+This project has been tested on Python versions **3.9, 3.10, 3.11, and 3.12**. Required packages are available in [requirements.txt](./requirements.txt)
 
 ### MATLAB
 
