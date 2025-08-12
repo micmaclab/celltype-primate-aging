@@ -31,7 +31,7 @@ Required R packages and tested versions:
 ---
 
 ## Installation Instructions
-Install Time: 1 min
+Install Time: <5 min
 
 ### Clone Github Repository
 First, clone this repository to your local machine:
