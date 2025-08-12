@@ -6,52 +6,119 @@ This repository hosts data, code, and links to external resources used to genera
 
 [Preprint Link](https://www.biorxiv.org/content/10.1101/2025.07.08.663725v1.full)
 
-## Alignment & Analyses 
-
 <p align="center">
   <img src="figs/overview.png" width="850">
 </p>
 
+---
+## Supported Software Versions
 
-## Project Code
+### Python
+
+This project has been tested on Python versions **3.9, 3.10, 3.11, and 3.12**.
+
+### MATLAB
+
+The MATLAB scripts have been tested on **MATLAB R2022b** and later versions. Compatibility with earlier releases has not been verified.
+
+### R
+
+R code has been tested on **R 4.4.1**. 
+Required R packages and tested versions:  
+- `lme4` (version 1.1.35.5)  
+- `lmerTest` (version 3.1.3)
+  
+---
+
+## Installation Instructions
+Install Time: 1 min
+
+### Clone Github Repository
+First, clone this repository to your local machine:
+```bash
+git clone https://github.com/micmaclab/celltype-primate-aging.git
+cd celltype-primate-aging
+```
+
+### Creating a Conda Environment
+
+To ensure compatibility and reproducibility, we recommend creating a dedicated Conda environment with one of the supported Python versions. For example, to create an environment with Python 3.12, run:
+
+```bash
+conda create --name my_env python=3.12 -y
+```
+
+### Activate the environment:
+
+```bash
+conda activate my_env
+```
+
+### Installing Required Packages
+
+After activating the environment, install the necessary Python packages from the provided requirements.txt file:
+
+```bash
+python -m pip install -r requirements.txt
+```
+Note: Replace myenv with a name appropriate for your project or preference. Ensure the requirements.txt file is located in your current working directory or provide its path accordingly.
+
+### DEMO
+All files have been configured to run smoothly and reference the appropriate resources without errors. Please note that, due to ongoing research, raw MRI feature files and computed MIND networks are currently unavailable. However, cohort-level total similarity strength data ([MIND Network](./MIND_Network)) and age effect results ([Mixed Effects Models](./Mixed_Effects_Models)) are provided in their respective directories for use in downstream analyses. Expected outputs for each analysis are also included in their corresponding folders.
+
+
+---
+## Alignment & Analyses 
+
+
+### Project Code
 
 - **Cortical similarity networks using Morphometric Inverse Divergence (MIND)**  
   - Usage: Compute region-wise similarity based on multivariate MRI features  
   - Code: [MIND Network: Generation](./MIND_Network/MIND_Generation.ipynb)
+  - Run time: 1-2 hours
 
 - **Computation of network-based properties**  
   - Usage: Derive total similarity strength across cortical regions and networks  
   - Code: [MIND Network: Properties](./MIND_Network/MIND_Network_Properties.ipynb)
+  - Run time: <5 minutes
 
 - **Statistical modeling of age effects**  
   - Usage: Model age-related change in regional similarity strength using `lme4`  
   - Code: [Mixed Effects Models](./Mixed_Effects_Models)
+  - Run time: <5 minutes
 
 - **3D single-cell transcriptomic atlas of macaque monkey**  
   - Usage: Analyze region- and layer-specific cell type distributions and enrichment
   - Code: [Enrichment Analysis for Macaque](./Enrichment_Analysis/macaque/enrichment_macaque.ipynb)
+  - Run Time: 5-6 hours
 
 - **Univariate associations with cell type specific abundances**  
   - Usage: Correlate regional MRI features with cell-type abundance using null models  
   - Code: [Univariate Associations](./Univariate_Associations/univariate_associations.ipynb)
+  - Run Time: 5-10 minutes
 
 - **Canonical Correlation Analysis**  
   - Usage: Identify multivariate relationships between cell profiles and MRI-based MIND.   
   - Code: [CCA Analysis](./CCA)
+  - Run Time: <5 minutes
 
 - **Human specific cortical cell type enrichment dataset**  
   - Usage: Integrate imputed human cell type distributions from Zhang et al (see *External Repositories*)
   - Code: [Enrichment Analysis for Human](./Enrichment_Analysis/human/enrichment_human.ipynb)
+  - Run Time: 5-6 hours
 
 - **Comparison of macaque and human cell types by their aligned functional networks**  
   - Usage: Test for cell type enrichment within functional networks in both species  
   - Code: [Cross Species Comparison by Network](./Cross_Species_Comparison/human_macaque_comparison.ipynb)
+  - Run Time: <5 minutes
 
 - **Macaque to human comparison of cell type composition**  
   - Usage: Compare cross-species cell type composition using PCA and Mantel test  
   - Code: [Cross Species Comparison by Composition](./Cross_Species_Comparison/human_macaque_comparison.ipynb)
+  - Run Time: <5 minutes
 
-## Project Data
+### Project Data
 
 - **Spatially Resolved Cell Type Distributions in Macaque Cortex - adapted from Chen et al.(2023)**
   - Cell type abundances were derived from spatial transcriptomic profiling of the macaque brain, as reported by Chen et al. The original 264 cell types were combined into their broader categories (23 cell types). These data are mapped to regions defined by the D99 macaque atlas and released in a csv file and GIfTI files per cell type. 
@@ -63,7 +130,7 @@ This repository hosts data, code, and links to external resources used to genera
   - .csv: [d99_to_yeo_network_labels.csv](./data/d99_to_yeo_network_labels.csv)
   - .gii: [L.Yeo2011_7Networks_N1000.human-to-monkey.41k_civet_D99.label.gii](./data/L.Yeo2011_7Networks_N1000.human-to-monkey.41k_civet_D99.label.gii)
 
-## External Repositories
+### External Repositories
 
 - **MIND network construction**  
   - Code: https://github.com/isebenius/MIND  
@@ -89,7 +156,7 @@ This repository hosts data, code, and links to external resources used to genera
 - **Surface Based Visualizations**  
   - Code: https://github.com/danjgale/surfplot  
 
-## External Tools & Software Libraries
+### External Tools & Software Libraries
 
 - **CIVET-macaque**  
   - Usage: Cortical surface extraction  
