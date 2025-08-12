@@ -19,7 +19,7 @@ This project has been tested on Python versions **3.9, 3.10, 3.11, and 3.12**. R
 
 ### MATLAB
 
-The MATLAB scripts have been tested on **MATLAB R2022b** and later versions. Compatibility with earlier releases has not been verified.
+The MATLAB scripts have been tested on **MATLAB R2024b** and later versions. Compatibility with earlier releases has not been verified.
 
 ### R
 
