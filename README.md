@@ -64,7 +64,7 @@ python -m pip install -r requirements.txt
 Note: Replace myenv with a name appropriate for your project or preference. Ensure the requirements.txt file is located in your current working directory or provide its path accordingly.
 
 ### DEMO
-All files have been configured to run smoothly and reference the appropriate resources without errors. Please note that, due to ongoing research, raw MRI feature files and computed MIND networks are currently unavailable. However, cohort-level total similarity strength data ([MIND Network](./MIND_Network)) and age effect results ([Mixed Effects Models](./Mixed_Effects_Models)) are provided in their respective directories for use in downstream analyses. Expected outputs for each analysis are also included in their corresponding folders.
+All files have been configured to run smoothly and reference the appropriate resources without errors. Please find cohort-level total similarity strength data ([MIND Network](./MIND_Network)) and age effect results ([Mixed Effects Models](./Mixed_Effects_Models)) in their respective directories for use in downstream analyses. Expected outputs for each analysis are also included in their corresponding folders.
 
 
 ---
