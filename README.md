@@ -188,3 +188,8 @@ All files have been configured to run smoothly and reference the appropriate res
   - Language: R  
   - Code: https://cran.r-project.org/web/packages/lme4/index.html  
   - Reference: [Bates et al., *Journal of Statistical Software* 67(1), 2015.](https://doi.org/10.18637/jss.v067.i01)
+
+
+### License
+Content in this repository is licensed under **CC BY-NC 4.0**.  
+See the [LICENSE](./LICENSE.md) file. SPDX: `CC-BY-NC-4.0`.
