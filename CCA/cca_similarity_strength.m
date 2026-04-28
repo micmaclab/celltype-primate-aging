@@ -6,55 +6,43 @@ close all
 %  Set Up Directories Dynamically
 % ---------------------------
 
-this_file  = matlab.desktop.editor.getActiveFilename;
-script_dir = fileparts(this_file);
-base_dir   = fileparts(script_dir);  % Assumes script is in home/CCA/
+script_dir = fileparts(mfilename('fullpath'));
+base_dir   = fileparts(fileparts(script_dir)); 
 
-% Define subdirectories
-data_dir         = fullfile(base_dir, 'CCA', 'input');
-output_main_dir  = fullfile(base_dir, 'CCA', 'output');
-output_sens_dir  = fullfile(base_dir, 'CCA', 'sensitivity_analysis');
+% Define and create output folders
+output_main_dir = fullfile(base_dir, 'celltype-primate-aging', 'CCA', 'output');
+output_sens_dir = fullfile(base_dir, 'celltype-primate-aging','CCA', 'sensitivity_analysis');
+mkdir(output_main_dir);
+mkdir(output_sens_dir);
 
-% Create output folders if they don't exist
-if ~exist(output_main_dir, 'dir'), mkdir(output_main_dir); end
-if ~exist(output_sens_dir, 'dir'), mkdir(output_sens_dir); end
+% Add PermCCA code to path (assumes it is inside an 'external' folder in your repo)
+addpath(genpath(fullfile(base_dir, 'external', 'PermCCA-master')));
 
-% Add PermCCA code to path - change to correct path as needed 
-addpath('/Users/melinatsotras/Downloads/PermCCA-master');
 
 %% ---------------------------
 %  Load Shared Data
 % ---------------------------
 
-% 1. Total Similarity Strength
-similarity_strength_table = readtable(fullfile(base_dir,'MIND_Network', 'total_similarity_strength.csv'), 'ReadRowNames', true);
+% 1. Load and Sort Similarity Strength
+sim_path = fullfile(base_dir,'celltype-primate-aging', 'MIND_Network', 'total_similarity_strength.csv');
+similarity_strength_table = readtable(sim_path, 'ReadRowNames', true, 'VariableNamingRule', 'preserve');
 
-% Get the row names (cell array of char)
-row_names = similarity_strength_table.Properties.RowNames;
-
-% Convert them to numeric
-row_nums = str2double(row_names);
-
-% Sort numeric row names and get sorting indices
-[sorted_nums, sort_idx] = sort(row_nums);
-
-% Reorder the table rows according to sort order
+% Convert RowNames to double for numeric sorting
+row_nums = str2double(similarity_strength_table.Properties.RowNames);
+[~, sort_idx] = sort(row_nums);
 similarity_strength_table = similarity_strength_table(sort_idx, :);
 
-% Update row names to sorted (optional but cleaner)
-similarity_strength_table.Properties.RowNames = string(sorted_nums);
+% Extract the metric
+metric = similarity_strength_table.("total_similarity_strength");
 
+% Permuted Metrics
+%nulls = readmatrix(fullfile(base_dir, 'null_maps_similarity_strength.csv'));
+%disp(size(nulls)); 
 
-% Extract the 't_value' column as a numeric vector
-metric = similarity_strength_table.total_similarity_strength;
-
-% 2. Permuted Metrics
-nulls = readmatrix(fullfile(data_dir, 'hungarian_5k_nulls_similarity_strength.csv'));
-disp(size(nulls));  % Confirm dimensions
-
-% 3. Cell type abundance
-Cell_data      = readtable(fullfile(base_dir, 'data', 'd99_cell_abundance.csv'), 'ReadRowNames', true);
-row_names = str2double(Cell_data.Properties.RowNames);
+% Cell type abundance
+cell_data_path = fullfile(base_dir,'celltype-primate-aging','data', 'd99_cell_abundance.csv');
+Cell_data      = readtable(cell_data_path, 'ReadRowNames', true);
+row_names      = str2double(Cell_data.Properties.RowNames);
 
 % Find the index of the row where the name is 70
 row_to_remove = row_names == 70;
@@ -73,7 +61,7 @@ nP = 5000;  % Number of permutations
 %% =========================================================================
 
 [p_sim, r_sim, A_sim, B_sim, U_sim, V_sim] = ...
-    permcca(metric, Celldata_mat, nP, [], [], [], [], nulls);
+    permcca(metric, Celldata_mat, nP, [], [], [], []);
 
 % Compute loadings and significance
 loadings = zeros(cell_num, 2);
@@ -132,29 +120,43 @@ writetable(array2table([r_sim, p_sim], ...
 %% =========================================================================
 
 % Define indices
-id_OLG  = 4;
-id_L4_5 = 13;
-id_L5_6 = 15;
-id_RELN = 20;
+id_OLG      = 4;
+id_L4_5     = 13;
+id_L5_6     = 15;
+id_VIP_RELN = 23;
+id_L4_5_6   = 14; % New Index included
 
 % Define cell type combinations to remove
 removal_sets = {
-    [id_OLG, id_L4_5, id_L5_6],            'OLG/L4_5/L5_6';
-    [id_L4_5],                             'L4_5';
-    [id_OLG],                              'OLG';
-    [id_RELN],                             'RELN';
-    [id_L5_6],                             'L5_6';
-    [id_L4_5, id_RELN],                    'L4_5/RELN';
-    [id_OLG, id_L5_6],                     'OLG/L5_6';
-    [id_L4_5, id_L5_6],                    'L4_5/L5_6';
-    [id_OLG, id_L4_5],                     'OLG/L4_5';
-    [id_RELN, id_L5_6],                    'RELN/L5_6';
-    [id_OLG, id_L4_5, id_L5_6, id_RELN],   'OLG/L4_5/RELN/L5_6';
-    [id_OLG, id_RELN],                     'OLG/RELN';
-    [id_L5_6, id_RELN],                    'L5_6/RELN';
-    [id_OLG, id_L4_5, id_RELN],            'OLG/L4_5/RELN';
-    [id_OLG, id_L5_6, id_RELN],            'OLG/L5_6/RELN';
-    [id_L4_5, id_L5_6, id_RELN],           'L4_5/L5_6/RELN';
+    % Single Sets
+    [id_OLG],                                  'OLG';
+    [id_L4_5],                                 'L4_5';
+    [id_L5_6],                                 'L5_6';
+    [id_L4_5_6],                               'L4_5_6'; % Added single
+    [id_VIP_RELN],                             'VIP_RELN';
+    
+    % Double Sets
+    [id_OLG, id_L4_5],                         'OLG/L4_5';
+    [id_OLG, id_L5_6],                         'OLG/L5_6';
+    [id_OLG, id_L4_5_6],                       'OLG/L4_5_6'; % Added combo
+    [id_OLG, id_VIP_RELN],                     'OLG/VIP_RELN';
+    [id_L4_5, id_L5_6],                        'L4_5/L5_6';
+    [id_L4_5, id_VIP_RELN],                    'L4_5/VIP_RELN';
+    [id_L5_6, id_VIP_RELN],                    'L5_6/VIP_RELN';
+    [id_L4_5_6, id_VIP_RELN],                  'L4_5_6/VIP_RELN'; % Added combo
+    [id_VIP_RELN, id_L5_6],                    'VIP_RELN/L5_6';
+    
+    % Triple Sets
+    [id_OLG, id_L4_5, id_L5_6],                'OLG/L4_5/L5_6';
+    [id_OLG, id_L4_5, id_VIP_RELN],            'OLG/L4_5/VIP_RELN';
+    [id_OLG, id_L5_6, id_VIP_RELN],            'OLG/L5_6/VIP_RELN';
+    [id_OLG, id_L4_5_6, id_VIP_RELN],          'OLG/L4_5_6/VIP_RELN'; % Added combo
+    [id_L4_5, id_L5_6, id_VIP_RELN],           'L4_5/L5_6/VIP_RELN';
+    
+    % Quad Sets
+    [id_OLG, id_L4_5, id_L5_6, id_VIP_RELN],   'OLG/L4_5/L5_6/VIP_RELN';
+    [id_OLG, id_L4_5, id_L5_6, id_L4_5_6],   'OLG/L4_5/L5_6/L4_5_6';
+    [id_OLG, id_L4_5, id_L5_6, id_L4_5_6, id_VIP_RELN],   'OLG/L4_5/L5_6/L4_5_6/VIP_RELN';
 };
 
 cca_r_p = zeros(length(removal_sets), 2);
@@ -168,25 +170,34 @@ for i = 1:length(removal_sets)
     Celldata_mat_reduced = Celldata_mat;
     Celldata_mat_reduced(:, indices_to_remove) = [];
 
-    [p_val, r_val, ~, ~, ~, V] = permcca(metric, Celldata_mat_reduced, nP, [], [], [], [], nulls);
+    [p_val, r_val, ~, ~, ~, V] = permcca(metric, Celldata_mat_reduced, nP, [], [], [], []);
 
     cca_r_p(i, :) = [r_val, p_val];
     RowNames{i}   = label;
     V_save        = [V_save, V];
 end
+region_ids = similarity_strength_table.Properties.RowNames;
 
-% Output tables
+% 2. Create the cca_table (Statistics)
 cca_table = array2table(cca_r_p, ...
     'RowNames', RowNames, ...
     'VariableNames', {'r', 'p'});
 
+% 3. Create the V_table (Canonical Variables)
 V_table = array2table(V_save, ...
-    'VariableNames', matlab.lang.makeValidName(RowNames));
+    'VariableNames', RowNames);
 
-% Save results
+% 4. Create the region column and prepend it to V_table
+% We convert region_ids to a table first, then concatenate
+region_col = table(region_ids, 'VariableNames', {'region'});
+V_table = [region_col, V_table]; 
+
+% 5. Save results
+% Use 'WriteRowNames' for cca_table because the labels are in the RowNames property
 writetable(cca_table, ...
     fullfile(output_sens_dir, 'similarity_strength_ccaGradualRemove_r_p.csv'), ...
     'WriteRowNames', true);
 
+% For V_table, 'region' is now a standard column, so 'WriteRowNames' is not needed
 writetable(V_table, ...
     fullfile(output_sens_dir, 'sensitivity_canonical_variable_similarity_strength.csv'));
