@@ -125,7 +125,7 @@ All files have been configured to run smoothly and reference the appropriate res
  
 - **Supplementary Code**
   - Usage: code used to compare aging models and multivariate techniques in Supplementary Analyses
-  - Code [Supplementary](./Supplementary)
+  - Code [Supplementary](./supplementary)
   - Run Time: <10 mins
 
 ### Project Data
