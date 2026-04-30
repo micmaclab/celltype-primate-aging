@@ -118,6 +118,16 @@ All files have been configured to run smoothly and reference the appropriate res
   - Code: [Cross Species Comparison by Composition](./Cross_Species_Comparison/human_macaque_comparison.ipynb)
   - Run Time: <5 minutes
 
+- **Cell-cell communication analysis**  
+  - Usage: Create cellchat objects for comparison of signaling across regions and whole-brain samples  
+  - Code: [Cell-Cell Communication](./Cell_Cell_Communication)
+  - Run Time: 2 hours
+ 
+- **Supplementary Code**
+  - Usage: code used to compare aging models and multivariate techniques in Supplementary Analyses
+  - Code [Supplementary](./Supplementary)
+  - Run Time: <10 mins
+
 ### Project Data
 
 - **Spatially Resolved Cell Type Distributions in Macaque Cortex - adapted from Chen et al.(2023)**
@@ -128,7 +138,13 @@ All files have been configured to run smoothly and reference the appropriate res
 - **Yeo 7-Network Functional Parcellation Mapped to Macaque CIVET Surface - adapted from Xu et al.(2020)**
   - The 7-Network parcellation was mapped to the macaque CIVET surface through surface registration and aligned to the D99 atlas to enable unique region assignments for each functional network. These are released in both a csv and a GIfTI file. 
   - .csv: [d99_to_yeo_network_labels.csv](./data/d99_to_yeo_network_labels.csv)
-  - .gii: [L.Yeo2011_7Networks_N1000.human-to-monkey.41k_civet_D99.label.gii](./data/L.Yeo2011_7Networks_N1000.human-to-monkey.41k_civet_D99.label.gii)
+  - .gii: [L.Yeo2011_7Networks_N1000.human-to-monkey.41k_civet_D99.label.gii](./data/gifti/cross-species_atlases/L.Yeo2011_7Networks_N1000.human-to-monkey.41k_civet_D99.label.gii)
+ 
+- **Syndor Sensorimotor-Association Axis Mapped to Macaque CIVET Surface**
+  - The S-A axis from Sydnor et al. (2021) was mapped to the macaque CIVET surface through surface registration (Xu et al.(2020)). The S-A axis across the left and right hemisphere are both released as GIfTI files.
+  - LH: [SensorimotorAssociation_Axis_LH_CIVET_macaque.func.gii](./data/gifti/cross-species_atlases/SensorimotorAssociation_Axis_LH_CIVET_macaque.func.gii)
+  - RH: [SensorimotorAssociation_Axis_RH_CIVET_macaque.func.gii](./data/gifti/cross-species_atlases/SensorimotorAssociation_Axis_RH_CIVET_macaque.func.gii)
+
 
 ### External Repositories
 
@@ -154,18 +170,18 @@ All files have been configured to run smoothly and reference the appropriate res
   - See in repo: [Imputed Distributions & Related Files](./Enrichment_Analysis/human/input)
 
 - **Surface Based Visualizations**  
-  - Code: https://github.com/danjgale/surfplot  
+  - Code: https://github.com/danjgale/surfplot
 
 ### External Tools & Software Libraries
 
 - **CIVET-macaque**  
   - Usage: Cortical surface extraction  
-  - Reference: [Lepage, C. et al., *NeuroImage* 227, 117622 (2021).](https://doi.org/10.1016/j.neuroimage.2020.117622)
+  - Reference: [Lepage, C. et al., *NeuroImage* (2021)](https://doi.org/10.1016/j.neuroimage.2020.117622)
   - See in repo: [CIVET-macaque surfaces](./data/gifti/CIVET_macaque-alpha-0.2)
 
 - **Connectome Workbench**  
   - Usage: Surface-based rendering and visualization  
-  - Reference: [Marcus, D. et al., *Frontiers in Neuroinformatics* 5, (2011).](https://doi.org/10.3389/fninf.2011.00004)
+  - Reference: [Marcus, D. et al., *Frontiers in Neuroinformatics* (2011)](https://doi.org/10.3389/fninf.2011.00004)
 
 - **netneurotools**  
   - Usage: Spatial permutation tests  
@@ -182,12 +198,24 @@ All files have been configured to run smoothly and reference the appropriate res
   - Language: Python  
   - Code: https://netneurolab.github.io/neuromaps/
   - See in repo: [Human fsaverage surfaces](./data/gifti/fsaverage-human)
+ 
+- **pyls**  
+  - Usage: Partial Least Squares Correlation  
+  - Language: Python  
+  - Code: https://pyls.readthedocs.io/en/latest/
+  - See in repo: [Partial Least Squares Correlation](./supplementary/plsc.ipynb)
 
-- **lme4 (R package)**  
+- **lme4**  
   - Usage: Linear mixed-effects modeling  
   - Language: R  
   - Code: https://cran.r-project.org/web/packages/lme4/index.html  
-  - Reference: [Bates et al., *Journal of Statistical Software* 67(1), 2015.](https://doi.org/10.18637/jss.v067.i01)
+  - Reference: [Bates et al., *Journal of Statistical Software* (2015)](https://doi.org/10.18637/jss.v067.i01)
+ 
+- **CellChat**
+  - Usage: Cell-cell communication analyses
+  - Language: R
+  - Code: https://github.com/jinworks/CellChat
+  - References: [Jin et al., Nature Communications 12(1), 1088 (2021)](https://www.nature.com/articles/s41467-021-21246-9), [Jin et al., Nature Protocols 19(11), 3129–3162 (2024)](https://www.nature.com/articles/s41596-024-01045-4)
 
 
 ### License
