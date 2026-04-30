@@ -211,7 +211,7 @@ All files have been configured to run smoothly and reference the appropriate res
   - Code: https://cran.r-project.org/web/packages/lme4/index.html  
   - Reference: [Bates et al., *Journal of Statistical Software* (2015)](https://doi.org/10.18637/jss.v067.i01)
  
-- **CellChat**
+- **CellChat V2**
   - Usage: Cell-cell communication analyses
   - Language: R
   - Code: https://github.com/jinworks/CellChat
