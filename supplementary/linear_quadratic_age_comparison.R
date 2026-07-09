@@ -3,10 +3,11 @@ library(lmerTest)
 library(here)
 library(dplyr)
 
+project_root <- here()
 
-data_path <- here("similarity_strength_subject_data.csv")
-
+data_path <- file.path(project_root, "MIND_Network", "similarity_strength_subject_data.csv")
 data <- read.csv(data_path, header = TRUE)
+
 
 # ------------------------------------------------------------------------------
 # Initialize results 

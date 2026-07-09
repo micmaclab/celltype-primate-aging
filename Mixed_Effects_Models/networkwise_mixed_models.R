@@ -4,10 +4,11 @@ library(lmerTest)
 library(ggeffects)
 library(ggplot2)
 library(dplyr)
+library(here)
 
 project_root <- here()
-data_path    <- file.path(project_root, "celltype-primate-aging", "similarity_strength_subject_data.csv")
-output_dir   <- file.path(project_root, "celltype-primate-aging", "ggplot_output")
+data_path    <- file.path(project_root,"MIND_Network", "similarity_strength_subject_data.csv")
+output_dir   <- file.path(project_root, "ggplot_output")
 
 # -----------------------------------------------------------------------------
 # Load Data

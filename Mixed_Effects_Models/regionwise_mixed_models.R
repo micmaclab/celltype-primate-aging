@@ -4,10 +4,8 @@ library(lmerTest)
 library(here)
 library(dplyr)
 
-# Set working directory to the project root (one level above current folder)
-project_root <- dirname(here::here())
-setwd(project_root)
-cat("Working directory set to:", getwd(), "\n")
+
+project_root <- here()
 
 # ------------------------
 # Load and Prepare Data

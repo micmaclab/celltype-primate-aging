@@ -31,7 +31,11 @@ metric            = age_effects_table.age_t;
 
 % 2. Cell type abundance
 cell_data_path = fullfile(base_dir, 'celltype-primate-aging/data/d99_cell_abundance.csv');
-Cell_data      = readtable(cell_data_path, 'ReadRowNames', true);
+
+Cell_data = readtable(cell_data_path);                       % read normally
+Cell_data.Properties.RowNames = string(Cell_data.region);    % region -> row names
+Cell_data.region = [];                                       % drop the now-duplicate column
+
 row_names      = str2double(Cell_data.Properties.RowNames);
 
 % Find the index of the row where the name is 70
@@ -39,7 +43,6 @@ row_to_remove = row_names == 70;
 
 % Remove that row
 Cell_data(row_to_remove, :) = [];
-%Cell_data('region', :) = [];
 
 Celldata_mat   = table2array(Cell_data);
 cell_type_list = Cell_data.Properties.VariableNames;
