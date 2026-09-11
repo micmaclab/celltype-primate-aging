@@ -44,6 +44,10 @@ row_to_remove = row_names == 70;
 % Remove that row
 Cell_data(row_to_remove, :) = [];
 
+% Permuted Metrics
+nulls = readmatrix(fullfile(base_dir, 'celltype-primate-aging/CCA/input/hungarian_5k_nulls_age_effects.csv'));
+disp(size(nulls)); 
+
 Celldata_mat   = table2array(Cell_data);
 cell_type_list = Cell_data.Properties.VariableNames;
 cell_num       = size(Celldata_mat, 2);
@@ -54,7 +58,7 @@ nP = 5000;  % Number of permutations
 %% =========================================================================
 
 [p_sim, r_sim, A_sim, B_sim, U_sim, V_sim] = ...
-    permcca(metric, Celldata_mat, nP, [], [], [], []);
+    permcca(metric, Celldata_mat, nP, [], [], [], [], nulls);
 
 % Compute loadings and significance
 loadings = zeros(cell_num, 2);

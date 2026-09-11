@@ -36,8 +36,8 @@ similarity_strength_table = similarity_strength_table(sort_idx, :);
 metric = similarity_strength_table.("total_similarity_strength");
 
 % Permuted Metrics
-%nulls = readmatrix(fullfile(base_dir, 'null_maps_similarity_strength.csv'));
-%disp(size(nulls)); 
+nulls = readmatrix(fullfile(base_dir, 'celltype-primate-aging/CCA/input/hungarian_5k_nulls_similarity_strength.csv'));
+disp(size(nulls)); 
 
 % 2. Cell type abundance
 cell_data_path = fullfile(base_dir, 'celltype-primate-aging/data/d99_cell_abundance.csv');
@@ -64,7 +64,7 @@ nP = 5000;  % Number of permutations
 %% =========================================================================
 
 [p_sim, r_sim, A_sim, B_sim, U_sim, V_sim] = ...
-    permcca(metric, Celldata_mat, nP, [], [], [], []);
+    permcca(metric, Celldata_mat, nP, [], [], [], [], nulls);
 
 % Compute loadings and significance
 loadings = zeros(cell_num, 2);

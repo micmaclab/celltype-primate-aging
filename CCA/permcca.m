@@ -1,9 +1,9 @@
 function varargout = permcca(varargin)
 % Permutation inference for canonical correlation
-% analysis (CCA).
+% analysis (CCA). From Winkler et al, 2020
 %
 % Usage:
-% [pfwer,r,A,B,U,V,rnull] = permcca(Y,X,nP,Z,W,Sel,partial,Pset)
+% [pfwer,r,A,B,U,V] = permcca(Y,X,nP,Z,W,Sel,partial,Pset)
 %
 % Inputs:
 % - Y        : Left set of variables, size N by P.
@@ -41,7 +41,6 @@ function varargout = permcca(varargin)
 % - B   : Canonical coefficients, right side.
 % - U   : Canonical variables, left side.
 % - V   : Canonical variables, right side.
-% - rnull: null distribution of canonical correlations
 %
 % ___________________________________________
 % AM Winkler, O Renaud, SM Smith, TE Nichols
@@ -127,7 +126,6 @@ V = X*[B null(B')];
 % Initialise counter
 cnt = zeros(1,K);
 lW  = zeros(1,K);
-rnull = zeros(nP,K);
 
 % For each permutation
 for p = 1:nP
@@ -171,7 +169,6 @@ for p = 1:nP
         [~,~,rperm] = cca(Qz*Y_perm(:,k:end),Qw*X_perm(:,k:end),R,S);
         lWtmp = -fliplr(cumsum(fliplr(log(1-rperm.^2))));
         lW(k) = lWtmp(1);
-        rnull(p,k) = rperm(1);
     end
     if p == 1
         lW1 = lW;
