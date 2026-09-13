@@ -34,7 +34,7 @@ result_list <- list(
 for (region_id in unique(data$region)) {
   
   region_data <- filter(data, region == region_id)
-  model <- lmer(value ~ age + sex + (1|hemi), data = region_data, REML = TRUE)
+  model <- lmer(value ~ age + sex + (1|hemi) + (1|subject), data = region_data, REML = TRUE)
   
   coefs <- as.data.frame(lmerTest:::get_coefmat(model))
   ci    <- confint(model, parm = "beta_", method = "profile")

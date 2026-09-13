@@ -30,9 +30,10 @@ for (region_id in unique(data$region)) {
   rd <- filter(data, region == region_id)
   rd$hemi <- as.factor(rd$hemi)
   rd$sex  <- as.factor(rd$sex)
+  rd$subject <- as.factor(rd$subject)
   
-  gam_linear    <- gam(value ~ age         + sex + s(hemi, bs = "re"), data = rd, method = "ML")
-  gam_nonlinear <- gam(value ~ s(age, k=5) + sex + s(hemi, bs = "re"), data = rd, method = "ML")
+  gam_linear    <- gam(value ~ age         + sex + s(hemi, bs = "re")+ s(subject, bs = "re"), data = rd, method = "ML")
+  gam_nonlinear <- gam(value ~ s(age, k=5) + sex + s(hemi, bs = "re")+ s(subject, bs = "re"), data = rd, method = "ML")
   
   res$region        <- c(res$region,        region_id)
   res$region_name   <- c(res$region_name, rd$D99_abbr[1])
@@ -44,7 +45,8 @@ for (region_id in unique(data$region)) {
   age_grid <- seq(min(rd$age), max(rd$age), length.out = 100)
   nd <- data.frame(age  = age_grid,
                    sex  = factor(levels(rd$sex)[1], levels = levels(rd$sex)),
-                   hemi = factor(levels(rd$hemi)[1], levels = levels(rd$hemi)))
+                   hemi = factor(levels(rd$hemi)[1], levels = levels(rd$hemi)),
+                   subject = factor(levels(rd$subject)[1], levels = levels(rd$subject)))
   
   pl <- predict(gam_linear,    nd, exclude = "s(hemi)", se.fit = TRUE)
   pn <- predict(gam_nonlinear, nd, exclude = "s(hemi)", se.fit = TRUE)

@@ -50,11 +50,11 @@ for (region_id in regions) {
   
   # ---- Model 1: Linear ----
   # Using REML = FALSE for Likelihood Ratio Testing
-  lme_linear <- lmer(value ~ age + sex + (1 | hemi), data = region_data, REML = FALSE)
+  lme_linear <- lmer(value ~ age + sex + (1 | hemi) + (1 | subject), data = region_data, REML = FALSE)
   lme_linear_sum <- coef(summary(lme_linear))
   
   # ---- Model 2: Quadratic ----
-  lme_quad <- lmer(value ~ age + I(age^2) + sex + (1 | hemi), data = region_data, REML = FALSE)
+  lme_quad <- lmer(value ~ age + I(age^2) + sex + (1 | hemi) + (1 | subject), data = region_data, REML = FALSE)
   lme_quad_sum <- coef(summary(lme_quad))
   
   # ---- Append results ----
