@@ -1,0 +1,73 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the associated manuscript."
+type: software
+title: "Cellular Basis for Cortical Network Aging in Primates"
+authors:
+  - family-names: Tsotras
+    given-names: Melina
+    orcid: "https://orcid.org/0009-0008-4184-1945"
+  - family-names: Charbonneau
+    given-names: Joey A.
+    orcid: "https://orcid.org/0000-0003-4384-461X"
+  - family-names: Lepage
+    given-names: Claude
+  - family-names: Bennett
+    given-names: Jeffrey L.
+    orcid: "https://orcid.org/0000-0002-3255-5663"
+  - family-names: Veraart
+    given-names: Jelle
+    orcid: "https://orcid.org/0000-0003-0781-0420"
+  - family-names: Karat
+    given-names: Bradley G.
+    orcid: "https://orcid.org/0000-0002-6550-1418"
+  - family-names: Evans
+    given-names: Alan C.
+    orcid: "https://orcid.org/0000-0003-3841-6098"
+  - family-names: Bliss-Moreau
+    given-names: Eliza
+    orcid: "https://orcid.org/0000-0002-0740-5612"
+  - family-names: Raven
+    given-names: Erika P.
+    orcid: "https://orcid.org/0000-0002-9567-5259" 
+version: "1.0.0"
+date-released: "2026-10-02" 
+repository-code: "https://github.com/micmaclab/celltype-primate-aging"
+repository-artifact: "https://zenodo.org/records/23106972"
+doi: "10.5281/zenodo.23106972"
+url: "https://github.com/micmaclab/celltype-primate-aging"
+abstract: >-
+  Code and analyses supporting the integration of MRI-derived cortical
+  similarity networks and spatial transcriptomics to characterize the
+  cellular basis of cortical network aging in primates.
+keywords:
+  - cortical aging
+  - macaque
+  - MRI
+  - spatial transcriptomics
+  - MIND Networks
+  - neuroimaging
+license: "CC BY-NC 4.0" 
+preferred-citation:
+  type: article
+  title: "Cellular basis for cortical network aging in primates"
+  authors:
+    - family-names: Tsotras
+      given-names: Melina
+    - family-names: Charbonneau
+      given-names: Joey A.
+    - family-names: Lepage
+      given-names: Claude
+    - family-names: Bennett
+      given-names: Jeffrey L.
+    - family-names: Veraart
+      given-names: Jelle
+    - family-names: Karat
+      given-names: Bradley G.
+    - family-names: Evans
+      given-names: Alan C.
+    - family-names: Bliss-Moreau
+      given-names: Eliza
+    - family-names: Raven
+      given-names: Erika P.
+  year: 2026
+  url: "https://github.com/micmaclab/celltype-primate-aging"
