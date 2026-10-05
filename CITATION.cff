@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this code or data, please cite the associated manuscript."
 type: software
-title: "Cellular Basis for Cortical Network Aging in Primates"
+title: "Cellular Basis for Cortical Network Aging in Primates: GitHub Repository"
 authors:
   - family-names: Tsotras
     given-names: Melina
@@ -49,7 +49,7 @@ keywords:
 license: "CC BY-NC 4.0" 
 preferred-citation:
   type: article
-  title: "Cellular basis for cortical network aging in primates"
+  title: "Cellular Basis for Cortical Network Aging in Primates: GitHub Repository"
   authors:
     - family-names: Tsotras
       given-names: Melina
