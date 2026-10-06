@@ -29,10 +29,10 @@ authors:
   - family-names: Raven
     given-names: Erika P.
     orcid: "https://orcid.org/0000-0002-9567-5259" 
-version: "1.0.0"
-date-released: "2026-10-02" 
+version: "1.0.3"
+date-released: "2026-10-06" 
 repository-code: "https://github.com/micmaclab/celltype-primate-aging"
-repository-artifact: "https://zenodo.org/records/23106972"
+repository-artifact: "https://doi.org/10.5281/zenodo.23106972"
 doi: "10.5281/zenodo.23106972"
 url: "https://github.com/micmaclab/celltype-primate-aging"
 abstract: >-
@@ -46,4 +46,4 @@ keywords:
   - spatial transcriptomics
   - MIND Networks
   - neuroimaging
-license: "CC BY-NC 4.0" 
+license: CC-BY-NC-4.0
