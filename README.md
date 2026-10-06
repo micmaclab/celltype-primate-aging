@@ -151,6 +151,9 @@ All files have been configured to run smoothly and reference the appropriate res
   - LH: [SensorimotorAssociation_Axis_LH_CIVET_macaque.func.gii](./data/gifti/cross-species_atlases/SensorimotorAssociation_Axis_LH_CIVET_macaque.func.gii)
   - RH: [SensorimotorAssociation_Axis_RH_CIVET_macaque.func.gii](./data/gifti/cross-species_atlases/SensorimotorAssociation_Axis_RH_CIVET_macaque.func.gii)
 
+- **Template MRI metrics**
+  - Regional estimates of surface area, cortical thickness, Gaussian curvature, mean curvature, T1w/T2w ratio, sulcal depth, and volume were computed for each region of the D99 atlas (n = 64 animals). Rather than averaging across animals, we fit a model for each region and metric with age and sex as covariates and used it to predict values for a 6-year-old male, matching the age and sex of the reference spatial transcriptomics dataset.
+  - .gii: [data/gifti/template_mri](./data/gifti/template_mri)
 
 ### External Repositories
 
